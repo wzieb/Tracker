@@ -6,14 +6,15 @@ let nextId = JSON.parse(localStorage.getItem("nextId"));
 function generateTaskId() {
   nextId++;
 };
+//datepicker
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
   const taskEntryLS = JSON.parse(localStorage.getItem('taskEntry')) || [];
 //empyting out HTML, prevents from card duplication since we're interating through the array each time in function. 
 document.querySelector('#todo-cards').innerHTML='';
-document.querySelector('#in-progress').innerHTML='';
-document.querySelector('#done').innerHTML = '';
+document.querySelector('#in-progress-cards').innerHTML='';
+document.querySelector('#done-cards').innerHTML = '';
 
   for (let taskEntry of taskEntryLS){
     const taskCard = document.createElement('div');
@@ -23,7 +24,7 @@ document.querySelector('#done').innerHTML = '';
 
     titleEl.innerText = taskEntry.titleValue;
     dueDateEl.innerText= taskEntry.dueDateValue;
-    descriptionEl.innerText= taskEntry.dueDateValue;
+    descriptionEl.innerText= taskEntry.descriptionValue;
 
     taskCard.appendChild(titleEl);
     taskCard.appendChild(dueDateEl);
@@ -60,6 +61,7 @@ function handleDrop(event, ui) {
 // Todo: when the page loads - similar to DOMContentLoaded, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
   renderTaskList();
+  $( "#datepicker" ).datepicker();
   const addButton = document.querySelector('.addButton');
   addButton.addEventListener('click',function(){
     const titleValue = document.querySelector('.title').value;
@@ -70,7 +72,7 @@ $(document).ready(function () {
       titleValue,
       dueDateValue,
       descriptionValue,
-      status: "todo"//assigning default status of todo
+      status:"todo" //assigning default status of todo
     };
     const taskEntryLS = JSON.parse(localStorage.getItem('taskEntry')) || [];
 
