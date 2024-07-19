@@ -1,4 +1,4 @@
 # 05 Third-Party APIs: Task Board
 
-## Link to github: https://github.com/wzieb/Tracker
+## Link to github: https://wzieb.github.io/Tracker/
 
